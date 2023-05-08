@@ -52,7 +52,7 @@ INSERT INTO times VALUES
 (15, 'São Bernardo', 'São Bernardo do Campo', 'Primeiro de Maio', 'Magnum Group', 0, 0),
 (16, 'São Paulo', 'São Paulo', 'Morumbi', 'Adidas', 1, 0)
 
-CREATE PROCEDURE sp_divide_times(@saida VARCHAR(50) OUTPUT)
+CREATE PROCEDURE times(@saida VARCHAR(50) OUTPUT)
 	AS
 		DELETE grupos 
 		DECLARE @grp CHAR(1), @grupos CHAR(4), @cont_grupos INT, @time_especial BIT
@@ -121,7 +121,7 @@ CREATE PROCEDURE sp_divide_times(@saida VARCHAR(50) OUTPUT)
 		SET @saida = 'Sucesso!!'
 
 
-CREATE PROCEDURE sp_partidas (@saida VARCHAR(40) OUTPUT)
+CREATE PROCEDURE rodada (@saida VARCHAR(40) OUTPUT)
 AS
 BEGIN
     DECLARE @datas TABLE (codData INT IDENTITY(1,1), dt_rodada_dom DATE, dt_rodada_quarta DATE)
@@ -189,13 +189,13 @@ BEGIN
 
 -- Testeando as saidas
 DECLARE @saida_teste VARCHAR(40)
-EXEC sp_divide_times @saida_teste OUTPUT
+EXEC times @saida_teste OUTPUT
 PRINT @saida_teste
 
 SELECT g.codTime, t.nomeTime, g.grupo FROM grupos g, times t WHERE g.codTime = t.codTime ORDER BY grupo
 
 DECLARE @saida VARCHAR(40)
-EXEC sp_partidas @saida OUTPUT
+EXEC rodadas @saida OUTPUT
 PRINT @saida
 
 SELECT t1.codTime As timeA, t2.codTime timeB, j.golsTimeA, j.golsTimeB, j.data_jogo 
