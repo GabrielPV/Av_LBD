@@ -1,4 +1,4 @@
-package br.edu.fateczl.CampeonatoPaulistaSpring.persistence;
+package br.edu.fateczl.Spring.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
